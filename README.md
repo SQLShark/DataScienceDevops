@@ -32,3 +32,6 @@ Be sure to check out his upcoming talks on Machine Learning.
 You can contact Terry here: tpm@adatis.co.uk or via [@SQLShark](https://twitter.com/SQLShark) on Twitter
 
 ** If you want to know more about these projects or Adatis, make sure that you visit our stand through out the conference. **
+
+### This session has been delivered at:
+- https://www.mcubed.london/sessions/deploy-models-faster-data-science-devops/
