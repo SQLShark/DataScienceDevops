@@ -1,17 +1,17 @@
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: kubernetestest
+  name: production_diabetes
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: kubernetestest
+        app: production_diabetes
     spec:
       containers:
-      - name: kubernetestest
-        image: modelmanagement2.azurecr.io/dundeedatascience
+      - name: production_diabetes
+        image: devopsml.azurecr.io/diabetes:v1
         ports:
         - containerPort: 5071
           name: dockerport
@@ -19,7 +19,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: kubernetestest
+  name: production_diabetes
 spec:
   type: LoadBalancer
   ports:
@@ -27,4 +27,4 @@ spec:
     targetPort: dockerport
     protocol: TCP
   selector:
-    app: kubernetestest
+    app: production_diabetes

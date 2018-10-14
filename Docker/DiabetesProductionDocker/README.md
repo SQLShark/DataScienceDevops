@@ -27,3 +27,33 @@ The important part of that last call is the -p parameter. That is forwarding the
 
 1. http://localhost:5071/train?var1=0
 2. http://localhost:5071/score?var1=10
+
+To stop running our model we need to find the name of the instance running.
+
+```
+docker ps
+```
+
+Now that we have an image that works, we need to deploy that image to our registry. To do this we will need to switch to the Azure CLI.
+
+```
+az login
+https://microsoft.com/devicelogin
+<Get the code>
+
+az acr login --name devopsml
+
+
+az acr list --resource-group session-datasciencedevops --query "[].{acrLoginServer:loginServer}" --output table
+
+
+docker tag diabetes devopsml.azurecr.io/diabetes:v1
+
+docker push devopsml.azurecr.io/diabetes:v1
+```
+
+Lets check that image was uploaded. 
+
+```
+az acr repository list --name devopsml --output table
+```
