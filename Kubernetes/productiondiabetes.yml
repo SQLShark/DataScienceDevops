@@ -1,16 +1,16 @@
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: production_diabetes
+  name: productiondiabetes
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: production_diabetes
+        app: productiondiabetes
     spec:
       containers:
-      - name: production_diabetes
+      - name: productiondiabetes
         image: devopsml.azurecr.io/diabetes:v1
         ports:
         - containerPort: 5071
@@ -19,7 +19,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: production_diabetes
+  name: productiondiabetes
 spec:
   type: LoadBalancer
   ports:
@@ -27,4 +27,4 @@ spec:
     targetPort: dockerport
     protocol: TCP
   selector:
-    app: production_diabetes
+    app: productiondiabetes

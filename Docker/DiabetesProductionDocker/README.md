@@ -57,3 +57,52 @@ Lets check that image was uploaded.
 ```
 az acr repository list --name devopsml --output table
 ```
+
+Log in to the Kubernetes cluster
+```
+az aks get-credentials --resource-group session-datasciencedevops  --name devopsml
+
+kubectl get nodes
+```
+
+```
+kubectl apply -f azure-vote-all-in-one-redis.yaml
+```
+
+Change the directory
+```
+G:
+cd G:\GitHubProjects\session-DataScienceDevops\Kubernetes
+```
+
+```
+kubectl apply -f productiondiabetes.yaml
+```
+
+Now we need to check if the service is running. It will be marked as pending until it has completed. 
+```
+kubectl get services
+```
+
+Lets also deploy the dashboard
+```
+az aks browse --resource-group session-datasciencedevops  --name devopsml
+```
+
+If there were any problems then this will show them. 
+
+az acr repository list --name devopsml --output table
+
+```
+az aks show --resource-group session-datasciencedevops --name devopsml --query "servicePrincipalProfile.clientId" --output table
+
+8edd6a3b-1f96-42af-8985-8f4d824ffc59
+
+az acr show --name devopsml --resource-group session-datasciencedevops --query "id" --output table
+
+/subscriptions/599eb5a3-0fc5-4e18-a220-39ebaa74f940/resourceGroups/session-datasciencedevops/providers/Microsoft.ContainerRegistry/registries/devopsml
+
+az role assignment create --assignee 8edd6a3b-1f96-42af-8985-8f4d824ffc59 --role Reader --scope /subscriptions/599eb5a3-0fc5-4e18-a220-39ebaa74f940/resourceGroups/session-datasciencedevops/providers/Microsoft.ContainerRegistry/registries/devopsml
+```
+Good blog for when thing dont go quite right: 
+https://docs.microsoft.com/en-us/azure/container-registry/container-registry-auth-aks
