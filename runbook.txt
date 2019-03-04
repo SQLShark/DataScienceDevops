@@ -1,0 +1,23 @@
+python G:\GitHub\session-DataScienceDevops\PythonModel\DiabetesModel.py
+
+http://localhost:5071/train
+
+http://localhost:5071/score?var1=1
+
+G:
+
+cd G:\GitHub\session-DataScienceDevops\Docker\DiabetesProductionDocker
+
+docker build -t productiondiabetes .
+
+docker tag productiondiabetes datasciencedevops.azurecr.io/productiondiabetes:v1
+
+az acr login --name datasciencedevops
+
+docker push datasciencedevops.azurecr.io/productiondiabetes:v1
+
+az acr repository list --name datasciencedevops --output table
+
+az aks create --resource-group session-datascience-devops --name datasciencedevops --node-count 1 --generate-ssh-keys
+
+az aks get-credentials --resource-group session-datascience-devops --name datasciencedevops
